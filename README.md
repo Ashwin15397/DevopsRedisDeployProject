@@ -26,8 +26,4 @@ This project automates the deployment of **Redis Sentinel on AWS EKS** using **T
 
 
  **Architecture Overview**  
-Refer to the image URL for the **Redis & EKS architecture**:  https://github.com/Ashwin15397/DevopsRedisDeployProject/blob/main/UnzerProjectArchitectureDiagram.jpg
-
-
-
-
+Refer to the image URL for the **Redis & EKS architecture**:  https://github.com/Ashwin15397/DevopsRedisDeployProject/blob/main/DevopsProjectArchitectureDiagram.jpg
