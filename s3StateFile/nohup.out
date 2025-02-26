@@ -1,0 +1,5 @@
+Forwarding from 127.0.0.1:26379 -> 26379
+Forwarding from [::1]:26379 -> 26379
+Handling connection for 26379
+E0225 16:24:56.967763   11776 portforward.go:424] "Unhandled Error" err="an error occurred forwarding 26379 -> 26379: error forwarding port 26379 to pod 1b19316e4c87626c3734c7b5ce9bf7fc65d248a97b15bf5b0e74225f65021201, uid : failed to execute portforward in network namespace \"/var/run/netns/cni-fdbd5e88-2910-837a-54e8-8f08165333dd\": failed to connect to localhost:26379 inside namespace \"1b19316e4c87626c3734c7b5ce9bf7fc65d248a97b15bf5b0e74225f65021201\", IPv4: dial tcp4 127.0.0.1:26379: connect: connection refused IPv6 dial tcp6: address localhost: no suitable address found "
+error: lost connection to pod

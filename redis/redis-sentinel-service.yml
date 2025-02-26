@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-sentinel
+  labels:
+    app: redis
+    service: sentinel
+    env: production
+  namespace: eks-redis
+spec:
+  ports:
+    - port: 26379
+      name: sentinel
+  selector:
+    app: redis
+  clusterIP: None

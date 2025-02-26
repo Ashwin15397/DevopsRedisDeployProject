@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: eks-redis
+spec:
+  serviceName: redis
+  updateStrategy:
+    type: RollingUpdate
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        env: production
+    spec:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - redis
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: redis
+          image: redis:7
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-config
+              mountPath: /redis-config
+              subPath: redis.conf
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-config
+          configMap:
+            name: redis-config
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-data
+      spec:
+        storageClassName: "ebs-sc"
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
